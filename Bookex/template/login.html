@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+{% if messages %}
+           <div class="alert alert-primary" role="alert">
+                {% for message in messages %}
+
+                <span {% if message.tags %} class="nav_item message-{{ message.tags }} " {% endif %}> {{ message }} </span>
+                {% endfor %}
+
+            </div>
+            {% endif %}
+<head>
+ <style>
+ .form-container {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+ }
+
+ .form-container input[type="text"],
+ .form-container input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+ }
+
+ .form-container .submit-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007BFF;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+ }
+
+ .form-container .submit-button:hover {
+  background-color: #0056b3;
+ }
+
+ .form-container .column-1,
+ .form-container .column-2 {
+  width: 45%;
+  float: left;
+  padding: 10px;
+  margin-bottom: 20px;
+ }
+
+ .form-container .column-2 {
+  float: right;
+ }
+ </style>
+</head>
+<div class="form-container">
+ <form method="post" action="{% url 'user_login' %}" class="form">
+   {% csrf_token %}
+
+   <div class="column-1">
+       {{ form.username.label_tag }} {{ form.username }}
+
+   </div>
+   <div class="column-2">
+
+       {{ form.password.label_tag }} {{ form.password }}
+
+   </div>
+   <input type="submit" value="Login" class="submit-button" />
+ </form>
+</div>
+{% endblock content %}

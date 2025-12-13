@@ -1,0 +1,13 @@
+/* home_style.css */
+
+.hero-section {
+    background-color: #F8c958;
+}
+.btn-bd-primary {
+  --bs-btn-font-weight: 600;
+  --bs-btn-color: var(--bs-white);
+  --bs-btn-bg: var(--bd-violet-bg);
+  --bs-btn-border-color: var(--bd-violet-bg);
+  }
+
+

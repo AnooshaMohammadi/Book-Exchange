@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% if messages %}
+        {% for message in messages %}
+         {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+
+        {% endfor %}
+
+    {% endif %}
+
+{% block content %}
+<head>
+ <style>
+ .form-container {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+ }
+
+ .form-container input[type="text"],
+ .form-container input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+ }
+
+ .form-container .submit-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007BFF;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+ }
+
+ .form-container .submit-button:hover {
+  background-color: #0056b3;
+ }
+
+ .form-container .column-1,
+ .form-container .column-2 {
+  width: 45%;
+  float: left;
+  padding: 10px;
+  margin-bottom: 20px;
+ }
+
+ .form-container .column-2 {
+  float: right;
+ }
+ </style>
+</head>
+<div class="form-container">
+ <form method="post" action="{% url 'user_registration' %}" class="form">
+   {% csrf_token %}
+   <h1 style="text-align: center">Register Here</h1>
+   <div class="column-1">
+       {{ form.username.label_tag }} {{ form.username }}
+       {{ form.firstname.label_tag }} {{ form.firstname }}
+       {{ form.lastname.label_tag }} {{ form.lastname }}
+       {{ form.address.label_tag }} {{ form.address }}
+   </div>
+   <div class="column-2">
+       {{ form.phonenumber.label_tag }} {{ form.phonenumber }}
+       {{ form.password1.label_tag }} {{ form.password1 }}
+       {{ form.password2.label_tag }} {{ form.password2 }}
+   </div>
+   <input type="submit" value="Register" class="submit-button" />
+ </form>
+</div>
+{% endblock content %}
+
